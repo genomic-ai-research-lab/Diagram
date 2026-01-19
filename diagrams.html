@@ -576,6 +576,160 @@
         </div>
     </div>
 
+    <!-- Figure 3.5: System Architecture Diagram -->
+    <div class="figure">
+        <div class="figure-title">Figure 3.5: High-Level System Architecture Diagram</div>
+        <div class="figure-content">
+            <svg width="100%" height="850" viewBox="0 0 1400 820" style="min-height: 700px;">
+                <defs>
+                    <marker id="arrowSolid5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#1a1a1a"/>
+                    </marker>
+                    <marker id="arrowDashed5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#666"/>
+                    </marker>
+                </defs>
+
+                <!-- ========== CLIENT LAYER ========== -->
+                <text x="60" y="45" font-size="14" font-weight="700" fill="#000">CLIENT LAYER</text>
+                
+                <!-- Web User Interface Box -->
+                <rect x="350" y="65" width="300" height="90" rx="5" fill="white" stroke="#1a1a1a" stroke-width="2"/>
+                <text x="500" y="100" font-size="13" font-weight="600" text-anchor="middle" fill="#1a1a1a">Web User Interface</text>
+                <text x="500" y="120" font-size="10" text-anchor="middle" fill="#555">(FASTA Upload / Progress Display /</text>
+                <text x="500" y="135" font-size="10" text-anchor="middle" fill="#555">Results Table / Explanation Panel)</text>
+
+                <!-- ========== APPLICATION / BACKEND LAYER ========== -->
+                <text x="30" y="410" font-size="13" font-weight="700" fill="#000" transform="rotate(-90, 30, 410)">APPLICATION / BACKEND LAYER</text>
+                
+                <!-- Backend Controller -->
+                <rect x="60" y="260" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="2.5"/>
+                <text x="135" y="300" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a1a">Backend</text>
+                <text x="135" y="320" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a1a">Controller</text>
+                <text x="135" y="340" font-size="9" text-anchor="middle" fill="#555">(Python)</text>
+
+                <!-- Sequence Alignment Module -->
+                <rect x="260" y="260" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="335" y="295" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Sequence</text>
+                <text x="335" y="313" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Alignment</text>
+                <text x="335" y="335" font-size="9" text-anchor="middle" fill="#555">(DIAMOND / BLAST)</text>
+
+                <!-- RAG / CARD Retrieval Module -->
+                <rect x="460" y="260" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="535" y="295" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">RAG / CARD</text>
+                <text x="535" y="313" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Retrieval</text>
+                <text x="535" y="335" font-size="9" text-anchor="middle" fill="#555">(ARO Lookup)</text>
+
+                <!-- Prompt Engineering Module -->
+                <rect x="660" y="260" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="735" y="295" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Prompt</text>
+                <text x="735" y="313" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Engineering</text>
+                <text x="735" y="335" font-size="9" text-anchor="middle" fill="#555">(Combine Context)</text>
+
+                <!-- LLM Reasoning Engine -->
+                <rect x="260" y="460" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="335" y="495" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">LLM Reasoning</text>
+                <text x="335" y="513" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Engine</text>
+                <text x="335" y="538" font-size="9" text-anchor="middle" fill="#555">(Send to LLM API)</text>
+
+                <!-- Report Generation Module -->
+                <rect x="460" y="460" width="150" height="100" rx="5" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="535" y="495" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Report</text>
+                <text x="535" y="513" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Generation</text>
+                <text x="535" y="538" font-size="9" text-anchor="middle" fill="#555">(JSON + NL Report)</text>
+
+                <!-- ========== EXTERNAL SYSTEMS ========== -->
+                <text x="1280" y="450" font-size="13" font-weight="700" fill="#000" transform="rotate(-90, 1280, 450)">EXTERNAL SYSTEMS</text>
+
+                <!-- CARD Database -->
+                <rect x="1050" y="260" width="200" height="100" rx="5" fill="#a0a0a0" stroke="#1a1a1a" stroke-width="2.5"/>
+                <text x="1150" y="295" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a1a">CARD Database</text>
+                <text x="1150" y="318" font-size="10" text-anchor="middle" fill="#333">(Ontology &amp; Resistance</text>
+                <text x="1150" y="333" font-size="10" text-anchor="middle" fill="#333">Metadata)</text>
+
+                <!-- LLM Provider -->
+                <rect x="1050" y="460" width="200" height="100" rx="5" fill="#a0a0a0" stroke="#1a1a1a" stroke-width="2.5"/>
+                <text x="1150" y="495" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a1a">LLM Provider (API)</text>
+                <text x="1150" y="518" font-size="10" text-anchor="middle" fill="#333">(Reasoning &amp;</text>
+                <text x="1150" y="533" font-size="10" text-anchor="middle" fill="#333">Validation Service)</text>
+
+                <!-- ========== PRIMARY DATA FLOWS (SOLID ARROWS) ========== -->
+                
+                <!-- 1. Web UI → Backend Controller: FASTA File -->
+                <path d="M 475 155 L 135 260" stroke="#1a1a1a" stroke-width="2.5" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="275" y="190" font-size="11" font-weight="600" fill="#1a1a1a">FASTA File</text>
+
+                <!-- 2. Backend → Alignment: Start -->
+                <path d="M 210 310 L 260 310" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="225" y="300" font-size="10" fill="#1a1a1a">Start</text>
+
+                <!-- 3. Alignment → RAG: Candidate Hits -->
+                <path d="M 410 310 L 460 310" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="435" y="280" font-size="9" text-anchor="middle" fill="#1a1a1a">Candidate</text>
+                <text x="435" y="292" font-size="9" text-anchor="middle" fill="#1a1a1a">Hits</text>
+
+                <!-- 4. RAG → Prompt Engineering: Enriched Context -->
+                <path d="M 610 310 L 660 310" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="635" y="280" font-size="9" text-anchor="middle" fill="#1a1a1a">Enriched</text>
+                <text x="635" y="292" font-size="9" text-anchor="middle" fill="#1a1a1a">Context</text>
+
+                <!-- 5. Prompt Engineering → LLM Reasoning: Prompt -->
+                <path d="M 735 360 L 735 410 L 335 410 L 335 460" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="555" y="402" font-size="11" fill="#1a1a1a">Prompt</text>
+
+                <!-- 6. LLM Reasoning → Report Generation: Validation Result -->
+                <path d="M 410 510 L 460 510" stroke="#1a1a1a" stroke-width="2" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="435" y="480" font-size="9" text-anchor="middle" fill="#1a1a1a">Validation</text>
+                <text x="435" y="492" font-size="9" text-anchor="middle" fill="#1a1a1a">Result</text>
+
+                <!-- 7. Report Generation → Web UI: Final Report -->
+                <path d="M 540 560 L 540 600 L 480 600 L 480 155" stroke="#1a1a1a" stroke-width="2.5" fill="none" marker-end="url(#arrowSolid5)"/>
+                <text x="510" y="618" font-size="11" font-weight="600" text-anchor="middle" fill="#1a1a1a">Final Report</text>
+
+                <!-- ========== EXTERNAL SERVICE QUERIES (DASHED ARROWS) ========== -->
+                
+                <!-- RAG → CARD Database: Route ABOVE all boxes -->
+                <path d="M 535 260 L 535 230 L 1150 230 L 1150 260" stroke="#666" stroke-width="2" stroke-dasharray="8,4" fill="none" marker-end="url(#arrowDashed5)"/>
+                <text x="840" y="222" font-size="10" fill="#444">ARO ID Query</text>
+
+                <!-- CARD Database → RAG: Route BELOW top row -->
+                <path d="M 1150 360 L 1150 385 L 535 385 L 535 360" stroke="#666" stroke-width="2" stroke-dasharray="8,4" fill="none" marker-end="url(#arrowDashed5)"/>
+                <text x="840" y="400" font-size="10" fill="#444">Mechanism &amp; Drug Class</text>
+
+                <!-- LLM Reasoning → LLM Provider: Route in gap between rows -->
+                <path d="M 350 460 L 350 425 L 1150 425 L 1150 460" stroke="#666" stroke-width="2" stroke-dasharray="8,4" fill="none" marker-end="url(#arrowDashed5)"/>
+                <text x="790" y="417" font-size="10" fill="#444">Send Prompt</text>
+
+                <!-- LLM Provider → LLM Reasoning: Route BELOW bottom row -->
+                <path d="M 1150 560 L 1150 590 L 335 590 L 335 560" stroke="#666" stroke-width="2" stroke-dasharray="8,4" fill="none" marker-end="url(#arrowDashed5)"/>
+                <text x="740" y="605" font-size="10" fill="#444">Validation Decision &amp; Explanation</text>
+
+                <!-- ========== LEGEND SECTION ========== -->
+                <line x1="60" y1="660" x2="1270" y2="660" stroke="#ccc" stroke-width="1"/>
+                
+                <text x="60" y="695" font-size="13" font-weight="700" fill="#000">Legend:</text>
+
+                <!-- Row 1 -->
+                <line x1="60" y1="725" x2="110" y2="725" stroke="#1a1a1a" stroke-width="2.5" marker-end="url(#arrowSolid5)" fill="none"/>
+                <text x="125" y="730" font-size="11" fill="#1a1a1a">Primary Data Flow</text>
+
+                <rect x="350" y="715" width="20" height="20" rx="3" fill="white" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="380" y="730" font-size="11" fill="#1a1a1a">Backend Component</text>
+
+                <!-- Row 2 -->
+                <line x1="60" y1="760" x2="110" y2="760" stroke="#666" stroke-dasharray="8,4" stroke-width="2" fill="none"/>
+                <text x="125" y="765" font-size="11" fill="#1a1a1a">External Service Query</text>
+
+                <rect x="350" y="750" width="20" height="20" rx="3" fill="#a0a0a0" stroke="#1a1a1a" stroke-width="1.5"/>
+                <text x="380" y="765" font-size="11" fill="#1a1a1a">External System</text>
+
+                <!-- Flow Description -->
+                <text x="600" y="680" font-size="10" fill="#555">Data Flow: FASTA → Backend → Alignment → CARD Retrieval → Prompt Engineering</text>
+                <text x="600" y="700" font-size="10" fill="#555">→ LLM Provider → Validation Result → Report Generation → UI</text>
+            </svg>
+        </div>
+    </div>
+
     <!-- Footer -->
     <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #d0d0d0; text-align: center; font-size: 11px; color: #888;">
         <p>LLM-Driven ARG Framework | Final Year Design Project | January 2026</p>
