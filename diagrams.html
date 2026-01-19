@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-Driven ARG Framework - Diagrams (Chapter 3)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1a1a1a;
+            background: white;
+            line-height: 1.6;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .document-title {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 20px;
+        }
+
+        .document-title h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .document-title p {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .figure {
+            page-break-inside: avoid;
+            margin-bottom: 50px;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            background: #fafafa;
+        }
+
+        .figure-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #d0d0d0;
+            padding-bottom: 10px;
+        }
+
+        .figure-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            background: white;
+            border: 1px solid #d0d0d0;
+            padding: 20px;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* SVG Styling */
+        .process-box {
+            fill: white;
+            stroke: #1a1a1a;
+            stroke-width: 1.5;
+        }
+
+        .entity-box {
+            fill: #f5f5f5;
+            stroke: #1a1a1a;
+            stroke-width: 1.5;
+        }
+
+        .central-circle {
+            fill: #ffffff;
+            stroke: #1a1a1a;
+            stroke-width: 2;
+        }
+
+        .arrow {
+            stroke: #1a1a1a;
+            stroke-width: 1.5;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+
+        .arrow-label {
+            font-size: 11px;
+            font-weight: 500;
+            fill: #1a1a1a;
+        }
+
+        .process-label {
+            font-size: 12px;
+            font-weight: 600;
+            fill: #1a1a1a;
+            text-anchor: middle;
+        }
+
+        .entity-label {
+            font-size: 12px;
+            font-weight: 600;
+            fill: #1a1a1a;
+            text-anchor: middle;
+        }
+
+        .io-label {
+            font-size: 10px;
+            fill: #1a1a1a;
+            text-anchor: middle;
+        }
+
+        /* UI Wireframe Styling */
+        .wireframe {
+            display: flex;
+            height: 400px;
+            gap: 15px;
+            background: white;
+            padding: 15px;
+            border: 1px solid #d0d0d0;
+        }
+
+        .sidebar {
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-item {
+            padding: 12px;
+            border: 1px solid #d0d0d0;
+            background: #f5f5f5;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .sidebar-item.button {
+            background: #e8e8e8;
+            cursor: pointer;
+            border: 1px solid #999;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .results-table {
+            flex: 1;
+            border: 1px solid #d0d0d0;
+            background: white;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 8px;
+            background: #e8e8e8;
+            font-size: 10px;
+            font-weight: 600;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 10px;
+        }
+
+        .detail-panel {
+            flex: 0.8;
+            border: 1px solid #d0d0d0;
+            padding: 10px;
+            background: #fafafa;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-title {
+            font-weight: 600;
+            border-bottom: 1px solid #d0d0d0;
+            padding-bottom: 5px;
+        }
+
+        .detail-text {
+            flex: 1;
+            background: white;
+            padding: 8px;
+            border: 1px solid #d0d0d0;
+            overflow: hidden;
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border: 1px solid #1a1a1a;
+            font-size: 9px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Gantt Chart Styling */
+        .gantt-container {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            border: 1px solid #d0d0d0;
+        }
+
+        .gantt-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .gantt-table th,
+        .gantt-table td {
+            border: 1px solid #d0d0d0;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .gantt-table th {
+            background: #e8e8e8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+
+        .gantt-table td {
+            background: #fafafa;
+        }
+
+        .task-name {
+            text-align: left;
+            font-weight: 500;
+            width: 180px;
+        }
+
+        .gantt-bar {
+            background: #1a1a1a;
+            height: 20px;
+            border: 1px solid #1a1a1a;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .figure {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+
+            .document-title {
+                border-bottom: 1px solid #1a1a1a;
+            }
+        }
+
+        /* Utility Classes */
+        .header {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .subheader {
+            font-size: 11px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Document Header -->
+    <div class="document-title">
+        <h1>LLM-Driven ARG Framework</h1>
+        <p>Chapter 3: System Architecture & Design Diagrams</p>
+    </div>
+
+    <!-- Figure 3.1: Context Diagram -->
+    <div class="figure">
+        <div class="figure-title">Figure 3.1: Context Diagram</div>
+        <div class="figure-content">
+            <svg width="700" height="380" viewBox="0 0 700 380">
+                <!-- Arrow marker definition -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#1a1a1a"/>
+                    </marker>
+                </defs>
+
+                <!-- Central Circle -->
+                <circle cx="350" cy="190" r="70" class="central-circle"/>
+                <text x="350" y="190" class="process-label" dy="0.3em" text-anchor="middle">
+                    <tspan x="350" dy="0">LLM-Driven</tspan>
+                    <tspan x="350" dy="12">ARG</tspan>
+                    <tspan x="350" dy="12">Framework</tspan>
+                </text>
+
+                <!-- External Entities -->
+                <!-- User (Researcher) - Left -->
+                <rect x="20" y="150" width="100" height="80" rx="5" class="entity-box"/>
+                <text x="70" y="195" class="entity-label" text-anchor="middle">
+                    <tspan x="70" dy="0">User</tspan>
+                    <tspan x="70" dy="12">(Researcher)</tspan>
+                </text>
+
+                <!-- CARD Database - Top Right -->
+                <rect x="520" y="30" width="120" height="80" rx="5" class="entity-box"/>
+                <text x="580" y="75" class="entity-label" text-anchor="middle">
+                    <tspan x="580" dy="0">CARD</tspan>
+                    <tspan x="580" dy="12">Database</tspan>
+                </text>
+
+                <!-- LLM Provider - Bottom Right -->
+                <rect x="520" y="270" width="120" height="80" rx="5" class="entity-box"/>
+                <text x="580" y="315" class="entity-label" text-anchor="middle">
+                    <tspan x="580" dy="0">LLM</tspan>
+                    <tspan x="580" dy="12">Provider</tspan>
+                </text>
+
+                <!-- Data Flows -->
+                <!-- User to System -->
+                <path d="M 120 180 L 280 160" class="arrow"/>
+                <text x="195" y="175" class="arrow-label" text-anchor="middle">Genomic FASTA File</text>
+
+                <!-- System to User -->
+                <path d="M 280 220 L 120 220" class="arrow"/>
+                <text x="195" y="240" class="arrow-label" text-anchor="middle">Analysis Report</text>
+
+                <!-- System to CARD Database -->
+                <path d="M 400 140 L 520 75" class="arrow"/>
+                <text x="460" y="100" class="arrow-label" text-anchor="middle">Gene ID Query</text>
+
+                <!-- CARD Database to System -->
+                <path d="M 520 110 L 400 160" class="arrow"/>
+                <text x="460" y="145" class="arrow-label" text-anchor="middle">Gene Description</text>
+
+                <!-- System to LLM Provider -->
+                <path d="M 400 240 L 520 305" class="arrow"/>
+                <text x="460" y="280" class="arrow-label" text-anchor="middle">Prompt (Alignment + Context)</text>
+
+                <!-- LLM Provider to System -->
+                <path d="M 520 270 L 400 220" class="arrow"/>
+                <text x="460" y="250" class="arrow-label" text-anchor="middle">Validation & Reasoning</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Figure 3.2: Data Flow Diagram (Level 1) -->
+    <div class="figure">
+        <div class="figure-title">Figure 3.2: Data Flow Diagram (Level 1)</div>
+        <div class="figure-content">
+            <svg width="900" height="280" viewBox="0 0 900 280">
+                <defs>
+                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#1a1a1a"/>
+                    </marker>
+                </defs>
+
+                <!-- Process 1: Sequence Alignment -->
+                <rect x="20" y="80" width="130" height="120" rx="5" class="process-box"/>
+                <text x="85" y="115" class="process-label" font-weight="700">1</text>
+                <text x="85" y="135" class="process-label" font-size="11">Sequence</text>
+                <text x="85" y="150" class="process-label" font-size="11">Alignment</text>
+                <text x="85" y="175" class="io-label" font-size="9">FASTA File →</text>
+                <text x="85" y="190" class="io-label" font-size="9">Candidate Hits</text>
+
+                <!-- Arrow 1 -->
+                <path d="M 150 140 L 190 140" class="arrow" marker-end="url(#arrowhead2)"/>
+
+                <!-- Process 2: RAG / Context Retrieval -->
+                <rect x="190" y="80" width="130" height="120" rx="5" class="process-box"/>
+                <text x="255" y="115" class="process-label" font-weight="700">2</text>
+                <text x="255" y="135" class="process-label" font-size="11">RAG /</text>
+                <text x="255" y="150" class="process-label" font-size="11">Context</text>
+                <text x="255" y="175" class="io-label" font-size="9">Candidate Hits →</text>
+                <text x="255" y="190" class="io-label" font-size="9">Enriched Data</text>
+
+                <!-- Arrow 2 -->
+                <path d="M 320 140 L 360 140" class="arrow" marker-end="url(#arrowhead2)"/>
+
+                <!-- Process 3: Prompt Engineering -->
+                <rect x="360" y="80" width="130" height="120" rx="5" class="process-box"/>
+                <text x="425" y="115" class="process-label" font-weight="700">3</text>
+                <text x="425" y="135" class="process-label" font-size="11">Prompt</text>
+                <text x="425" y="150" class="process-label" font-size="11">Engineering</text>
+                <text x="425" y="175" class="io-label" font-size="9">Enriched Data →</text>
+                <text x="425" y="190" class="io-label" font-size="9">LLM Prompt</text>
+
+                <!-- Arrow 3 -->
+                <path d="M 490 140 L 530 140" class="arrow" marker-end="url(#arrowhead2)"/>
+
+                <!-- Process 4: Reasoning Engine -->
+                <rect x="530" y="80" width="130" height="120" rx="5" class="process-box"/>
+                <text x="595" y="115" class="process-label" font-weight="700">4</text>
+                <text x="595" y="135" class="process-label" font-size="11">Reasoning</text>
+                <text x="595" y="150" class="process-label" font-size="11">Engine</text>
+                <text x="595" y="175" class="io-label" font-size="9">LLM Prompt →</text>
+                <text x="595" y="190" class="io-label" font-size="9">Validation</text>
+
+                <!-- Arrow 4 -->
+                <path d="M 660 140 L 700 140" class="arrow" marker-end="url(#arrowhead2)"/>
+
+                <!-- Process 5: Report Generation -->
+                <rect x="700" y="80" width="130" height="120" rx="5" class="process-box"/>
+                <text x="765" y="115" class="process-label" font-weight="700">5</text>
+                <text x="765" y="135" class="process-label" font-size="11">Report</text>
+                <text x="765" y="150" class="process-label" font-size="11">Generation</text>
+                <text x="765" y="175" class="io-label" font-size="9">Validation →</text>
+                <text x="765" y="190" class="io-label" font-size="9">Final Report</text>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Figure 3.3: User Interface Wireframe -->
+    <div class="figure">
+        <div class="figure-title">Figure 3.3: User Interface Wireframe</div>
+        <div style="background: white; border: 1px solid #d0d0d0; padding: 0; margin: 0;">
+            <!-- Header -->
+            <div style="padding: 15px; border-bottom: 2px solid #1a1a1a; background: #e8e8e8;">
+                <div class="header">Genomic ARG Validator</div>
+            </div>
+
+            <!-- Main Wireframe -->
+            <div class="wireframe">
+                <!-- Left Sidebar -->
+                <div class="sidebar">
+                    <div class="subheader">Control Panel</div>
+                    <div class="sidebar-item">
+                        📤 Upload FASTA
+                    </div>
+                    <div class="sidebar-item button">
+                        ▶ Process
+                    </div>
+                    <div class="sidebar-item">
+                        ⟳ Retrieving Context...
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Results Table -->
+                    <div class="results-table">
+                        <div class="table-header">
+                            <div>Gene Name</div>
+                            <div>Identity %</div>
+                            <div>E-Value</div>
+                            <div>Prediction</div>
+                        </div>
+                        <div class="table-row">
+                            <div>tet(A)</div>
+                            <div>94.5%</div>
+                            <div>1e-120</div>
+                            <div>Hit</div>
+                        </div>
+                        <div class="table-row">
+                            <div>blaCTX-M</div>
+                            <div>87.2%</div>
+                            <div>2e-95</div>
+                            <div>Hit</div>
+                        </div>
+                        <div class="table-row">
+                            <div>aac(6')-I</div>
+                            <div>45.1%</div>
+                            <div>8e-15</div>
+                            <div>False</div>
+                        </div>
+                    </div>
+
+                    <!-- Detail Panel -->
+                    <div class="detail-panel">
+                        <div class="detail-title">Analysis for Gene: tet(A)</div>
+                        <div class="detail-text">
+                            <strong>LLM Explanation:</strong> This gene confers tetracycline resistance via efflux pumps. High homology with validated CARD entry. Strong alignment statistics suggest functional hit.
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <div class="badge">✓ Valid Hit</div>
+                            <div style="font-size: 9px; color: #555;">Confidence: 98%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Figure 3.4: Project Plan (Gantt Chart) -->
+    <div class="figure">
+        <div class="figure-title">Figure 3.4: Project Plan (Gantt Chart)</div>
+        <div class="gantt-container">
+            <table class="gantt-table">
+                <thead>
+                    <tr>
+                        <th class="task-name">Task</th>
+                        <th>Jul</th>
+                        <th>Aug</th>
+                        <th>Sep</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
+                        <th>Jan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="task-name">1. Literature Review</td>
+                        <td colspan="2" style="padding: 0;"><div class="gantt-bar"></div></td>
+                        <td colspan="5" style="background: #fafafa;"></td>
+                    </tr>
+                    <tr>
+                        <td class="task-name">2. Requirement Analysis</td>
+                        <td style="background: #fafafa;"></td>
+                        <td style="padding: 0;"><div class="gantt-bar"></div></td>
+                        <td colspan="5" style="background: #fafafa;"></td>
+                    </tr>
+                    <tr>
+                        <td class="task-name">3. Prototype Implementation</td>
+                        <td colspan="2" style="background: #fafafa;"></td>
+                        <td colspan="2" style="padding: 0;"><div class="gantt-bar"></div></td>
+                        <td colspan="3" style="background: #fafafa;"></td>
+                    </tr>
+                    <tr>
+                        <td class="task-name">4. RAG Integration</td>
+                        <td colspan="3" style="background: #fafafa;"></td>
+                        <td colspan="2" style="padding: 0;"><div class="gantt-bar"></div></td>
+                        <td colspan="2" style="background: #fafafa;"></td>
+                    </tr>
+                    <tr>
+                        <td class="task-name">5. Testing & Validation</td>
+                        <td colspan="4" style="background: #fafafa;"></td>
+                        <td colspan="2" style="padding: 0;"><div class="gantt-bar"></div></td>
+                        <td style="background: #fafafa;"></td>
+                    </tr>
+                    <tr>
+                        <td class="task-name">6. Final Report Writing</td>
+                        <td colspan="5" style="background: #fafafa;"></td>
+                        <td colspan="2" style="padding: 0;"><div class="gantt-bar"></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #d0d0d0; text-align: center; font-size: 11px; color: #888;">
+        <p>LLM-Driven ARG Framework | Final Year Design Project | January 2026</p>
+        <p>Professional Academic Diagrams for Thesis Submission</p>
+    </div>
+</body>
+</html>
