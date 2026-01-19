@@ -316,7 +316,7 @@
     <div class="figure">
         <div class="figure-title">Figure 3.1: Context Diagram</div>
         <div class="figure-content">
-            <svg width="700" height="380" viewBox="0 0 700 380">
+            <svg width="750" height="420" viewBox="0 0 750 420">
                 <!-- Arrow marker definition -->
                 <defs>
                     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
@@ -325,59 +325,53 @@
                 </defs>
 
                 <!-- Central Circle -->
-                <circle cx="350" cy="190" r="70" class="central-circle"/>
-                <text x="350" y="190" class="process-label" dy="0.3em" text-anchor="middle">
-                    <tspan x="350" dy="0">LLM-Driven</tspan>
-                    <tspan x="350" dy="12">ARG</tspan>
-                    <tspan x="350" dy="12">Framework</tspan>
-                </text>
+                <circle cx="350" cy="210" r="75" class="central-circle"/>
+                <text x="350" y="195" class="process-label" text-anchor="middle">LLM-Driven</text>
+                <text x="350" y="212" class="process-label" text-anchor="middle">ARG</text>
+                <text x="350" y="229" class="process-label" text-anchor="middle">Framework</text>
 
                 <!-- External Entities -->
                 <!-- User (Researcher) - Left -->
-                <rect x="20" y="150" width="100" height="80" rx="5" class="entity-box"/>
-                <text x="70" y="195" class="entity-label" text-anchor="middle">
-                    <tspan x="70" dy="0">User</tspan>
-                    <tspan x="70" dy="12">(Researcher)</tspan>
-                </text>
+                <rect x="40" y="170" width="110" height="80" rx="5" class="entity-box"/>
+                <text x="95" y="205" class="entity-label" text-anchor="middle">User</text>
+                <text x="95" y="222" class="entity-label" text-anchor="middle">(Researcher)</text>
 
                 <!-- CARD Database - Top Right -->
-                <rect x="520" y="30" width="120" height="80" rx="5" class="entity-box"/>
-                <text x="580" y="75" class="entity-label" text-anchor="middle">
-                    <tspan x="580" dy="0">CARD</tspan>
-                    <tspan x="580" dy="12">Database</tspan>
-                </text>
+                <rect x="580" y="50" width="130" height="70" rx="5" class="entity-box"/>
+                <text x="645" y="82" class="entity-label" text-anchor="middle">CARD</text>
+                <text x="645" y="99" class="entity-label" text-anchor="middle">Database</text>
 
                 <!-- LLM Provider - Bottom Right -->
-                <rect x="520" y="270" width="120" height="80" rx="5" class="entity-box"/>
-                <text x="580" y="315" class="entity-label" text-anchor="middle">
-                    <tspan x="580" dy="0">LLM</tspan>
-                    <tspan x="580" dy="12">Provider</tspan>
-                </text>
+                <rect x="580" y="300" width="130" height="70" rx="5" class="entity-box"/>
+                <text x="645" y="332" class="entity-label" text-anchor="middle">LLM</text>
+                <text x="645" y="349" class="entity-label" text-anchor="middle">Provider</text>
 
-                <!-- Data Flows -->
-                <!-- User to System -->
-                <path d="M 120 180 L 280 160" class="arrow"/>
-                <text x="195" y="175" class="arrow-label" text-anchor="middle">Genomic FASTA File</text>
+                <!-- ========== DATA FLOWS ========== -->
+                
+                <!-- User to System: Genomic FASTA File (circle edge at x=275, y=200) -->
+                <path d="M 150 195 L 276 200" class="arrow"/>
+                <text x="212" y="182" class="arrow-label" text-anchor="middle">Genomic FASTA File</text>
 
-                <!-- System to User -->
-                <path d="M 280 220 L 120 220" class="arrow"/>
-                <text x="195" y="240" class="arrow-label" text-anchor="middle">Analysis Report</text>
+                <!-- System to User: Analysis Report (circle edge at x=275, y=220) -->
+                <path d="M 276 220 L 150 225" class="arrow"/>
+                <text x="212" y="248" class="arrow-label" text-anchor="middle">Analysis Report</text>
 
-                <!-- System to CARD Database -->
-                <path d="M 400 140 L 520 75" class="arrow"/>
-                <text x="460" y="100" class="arrow-label" text-anchor="middle">Gene ID Query</text>
+                <!-- System to CARD Database: Gene ID Query (from circle top-right edge) -->
+                <path d="M 403 150 L 500 85 L 580 85" class="arrow"/>
+                <text x="510" y="70" class="arrow-label" text-anchor="middle">Gene ID Query</text>
 
-                <!-- CARD Database to System -->
-                <path d="M 520 110 L 400 160" class="arrow"/>
-                <text x="460" y="145" class="arrow-label" text-anchor="middle">Gene Description</text>
+                <!-- CARD Database to System: Gene Description (to circle top-right edge) -->
+                <path d="M 580 115 L 510 115 L 410 162" class="arrow"/>
+                <text x="550" y="140" class="arrow-label" text-anchor="middle">Gene Description</text>
 
-                <!-- System to LLM Provider -->
-                <path d="M 400 240 L 520 305" class="arrow"/>
-                <text x="460" y="280" class="arrow-label" text-anchor="middle">Prompt (Alignment + Context)</text>
+                <!-- System to LLM Provider: Prompt (from circle bottom-right edge) -->
+                <path d="M 410 258 L 510 320 L 580 320" class="arrow"/>
+                <text x="530" y="265" class="arrow-label" text-anchor="middle">Prompt</text>
+                <text x="530" y="280" class="arrow-label" text-anchor="middle">(Alignment + Context)</text>
 
-                <!-- LLM Provider to System -->
-                <path d="M 520 270 L 400 220" class="arrow"/>
-                <text x="460" y="250" class="arrow-label" text-anchor="middle">Validation & Reasoning</text>
+                <!-- LLM Provider to System: Validation & Reasoning (to circle bottom-right edge) -->
+                <path d="M 580 350 L 510 350 L 403 270" class="arrow"/>
+                <text x="505" y="375" class="arrow-label" text-anchor="middle">Validation & Reasoning</text>
             </svg>
         </div>
     </div>
@@ -464,7 +458,8 @@
 
                 <!-- Process 2.0 → Process 3.0: Enriched Context -->
                 <path d="M 435 205 L 505 205" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arrowhead2)"/>
-                <text x="470" y="195" font-size="9" text-anchor="middle" fill="#1a1a1a">Enriched Context</text>
+                <text x="470" y="185" font-size="9" text-anchor="middle" fill="#1a1a1a">Enriched</text>
+                <text x="470" y="196" font-size="9" text-anchor="middle" fill="#1a1a1a">Context</text>
 
                 <!-- Process 3.0 → Process 4.0: Formatted Prompt -->
                 <path d="M 595 205 L 655 205" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arrowhead2)"/>
@@ -478,7 +473,7 @@
 
                 <!-- Process 4.0 → Process 5.0: Validation Result -->
                 <path d="M 700 250 L 700 290 L 595 330" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arrowhead2)"/>
-                <text x="665" y="285" font-size="9" text-anchor="middle" fill="#1a1a1a">Validation Result</text>
+                <text x="720" y="275" font-size="9" text-anchor="start" fill="#1a1a1a">Validation Result</text>
 
                 <!-- Process 5.0 → User: Analysis Report -->
                 <path d="M 505 350 L 90 350 L 90 235" stroke="#1a1a1a" stroke-width="1.5" fill="none" marker-end="url(#arrowhead2)"/>
